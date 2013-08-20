@@ -3,6 +3,7 @@ from distutils.core import setup
 
 setup(
     name='xorcrypt',
+    description='A simple python XOR encryption/decryption/obfuscation library',
     version='0.1dev',
     packages=['xorcrypt',],
     license='MIT License',
