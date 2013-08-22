@@ -1,4 +1,6 @@
+import sys
 import hashlib
+from random import randint
 
 
 def _hash(key, hash_type='sha1'):
@@ -33,3 +35,20 @@ def decrypt(string, key):
         if (i % 2) == 0:
             dec += chr(ord(string[i]) ^ ord(string[i+1]))
     return dec
+
+def encrypt(string, key):
+    '''
+    XOR Encrypt a string
+    '''
+    rand = ''
+    while (len(rand) < 32):
+        rand += str(randint(0, sys.maxint))
+    
+    rand = _hash(rand)
+    enc = ''
+    
+    for i in range(len(string)): 
+        print i
+        enc += rand[i%len(rand)] + chr(ord(rand[i%len(rand)]) ^ ord(string[i]))
+    return _xor_merge(enc, key)
+
