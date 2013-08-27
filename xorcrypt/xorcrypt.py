@@ -11,32 +11,32 @@ def _hash(key, hash_type='sha1'):
     m.update(key)
     return m.digest().encode('hex')
 
-def _xor_merge(string, key):
+def _xor_merge(data, key):
     '''
-    XOR Merge string and key  
+    XOR Merge data and key  
     '''
     key_hash = _hash(key)
     ret_str = ''
-    for i in range(len(string)):
-        ret_str += chr(ord(string[i]) ^ ord(key_hash[i%len(key_hash)]))
+    for i in range(len(data)):
+        ret_str += chr(ord(data[i]) ^ ord(key_hash[i%len(key_hash)]))
     return ret_str
 
-def xor_decrypt(string, key):
+def xor_decrypt(data, key):
     '''
-    XOR Decode a decoded string  
+    XOR Decode a decoded data  
     '''
 
-    string = _xor_merge(string, key)
+    data = _xor_merge(data, key)
     
     dec = ''
-    for i in range(len(string)):
+    for i in range(len(data)):
         if (i % 2) == 0:
-            dec += chr(ord(string[i]) ^ ord(string[i+1]))
+            dec += chr(ord(data[i]) ^ ord(data[i+1]))
     return dec
 
-def xor_encrypt(string, key):
+def xor_encrypt(data, key):
     '''
-    XOR Encrypt a string
+    XOR Encrypt a data
     '''
     rand = ''
     while (len(rand) < 32):
@@ -45,7 +45,7 @@ def xor_encrypt(string, key):
     rand = _hash(rand)
     enc = ''
     
-    for i in range(len(string)): 
-        enc += rand[i%len(rand)] + chr(ord(rand[i%len(rand)]) ^ ord(string[i]))
+    for i in range(len(data)): 
+        enc += rand[i%len(rand)] + chr(ord(rand[i%len(rand)]) ^ ord(data[i]))
     return _xor_merge(enc, key)
 
