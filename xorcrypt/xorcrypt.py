@@ -4,7 +4,6 @@ from random import randint
 
 
 def _hash(key, hash_type='sha1'):
-    print 'key2 ' , key
     if(hash_type is 'sha1'):
         m = hashlib.sha1()
     else:
@@ -17,7 +16,6 @@ def _xor_merge(string, key):
     XOR Merge string and key  
     '''
     key_hash = _hash(key)
-    print key_hash
     ret_str = ''
     for i in range(len(string)):
         ret_str += chr(ord(string[i]) ^ ord(key_hash[i%len(key_hash)]))
@@ -48,7 +46,6 @@ def encrypt(string, key):
     enc = ''
     
     for i in range(len(string)): 
-        print i
         enc += rand[i%len(rand)] + chr(ord(rand[i%len(rand)]) ^ ord(string[i]))
     return _xor_merge(enc, key)
 
