@@ -21,7 +21,7 @@ def _xor_merge(string, key):
         ret_str += chr(ord(string[i]) ^ ord(key_hash[i%len(key_hash)]))
     return ret_str
 
-def decrypt(string, key):
+def xor_decrypt(string, key):
     '''
     XOR Decode a decoded string  
     '''
@@ -34,7 +34,7 @@ def decrypt(string, key):
             dec += chr(ord(string[i]) ^ ord(string[i+1]))
     return dec
 
-def encrypt(string, key):
+def xor_encrypt(string, key):
     '''
     XOR Encrypt a string
     '''
