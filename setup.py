@@ -2,7 +2,8 @@
 from distutils.core import setup
 
 requires_list = [
-    'hashlib==20081119']
+    'hashlib==20081119',
+    'nose>=1.3.0']
 
 setup(
     name='xorcrypt',
